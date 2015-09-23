@@ -85,7 +85,7 @@ public class OOPDraw extends JFrame implements MouseListener, MouseMotionListene
 	//ArrayList for storing the shapes
 	private HashSet<AbstractShape> shapeList;
 
-	//The current composer to be used for composing things
+	//The current composer to be used for composing shapes
 	private ShapeComposer currentComposer;
 	
 	/**
@@ -128,8 +128,6 @@ public class OOPDraw extends JFrame implements MouseListener, MouseMotionListene
 	 */
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		// Where the mouse went down is the start
-		// position of the shape to be drawn
 		int x = arg0.getX();
 		int y = arg0.getY();
 		shapeList.add(currentComposer.create(new Point(x,y)));
@@ -144,13 +142,9 @@ public class OOPDraw extends JFrame implements MouseListener, MouseMotionListene
 	 */
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
-		// Now the mouse is being dragged without releasing,
-		// which means that the user may stop his mouse over a
-		// point but not release it. So that point is the
-		// current endpoint
 		int x = arg0.getX();
 		int y = arg0.getY();
-		shapeList.add(currentComposer.expand(new Point(x,y))); // and add the shape (line) to the arrayList
+		shapeList.add(currentComposer.expand(new Point(x,y)));
 		repaint();
 	}
 	
@@ -159,12 +153,9 @@ public class OOPDraw extends JFrame implements MouseListener, MouseMotionListene
 	 */
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// Fianlly the mouse is up indicating shape drawing is over.
-		// So set these mouseUp coordinates to set the end position.
-		// Then update the Vector count.
 		int x = arg0.getX();
 		int y = arg0.getY();
-		shapeList.add(currentComposer.complete(new Point(x,y))); // and add the shape (line) to the arrayList
+		shapeList.add(currentComposer.complete(new Point(x,y)));
 		repaint();
 	}
 
@@ -173,7 +164,7 @@ public class OOPDraw extends JFrame implements MouseListener, MouseMotionListene
 		// Nothing TO DO in this method
 	}
 
-	/*
+	/**
 	 * Paint method overridden for custom rendering of the screen
 	 * 
 	 * @see java.awt.Container#paint(java.awt.Graphics)
@@ -190,7 +181,7 @@ public class OOPDraw extends JFrame implements MouseListener, MouseMotionListene
 		}
 	}
 
-	/*
+	/**
 	 * method initializes GUI components
 	 */
 	private void initGUI() {
@@ -240,6 +231,7 @@ public class OOPDraw extends JFrame implements MouseListener, MouseMotionListene
 		add(btnOval);
 		add(btnRect);
 		add(btnClear);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-} // ALL ends :)
+}

@@ -8,6 +8,9 @@ import mainpackage.MyLine;
 public class LineComposer implements ShapeComposer {
 	private AbstractShape shape;
 	
+	/**
+	 * 
+	 */
 	@Override
 	public AbstractShape create(Point p) {
 		// Where the mouse went down is the start
@@ -20,8 +23,8 @@ public class LineComposer implements ShapeComposer {
 
 	@Override
 	public AbstractShape expand(Point p) {
-		MyLine s = (MyLine) shape; // refer to that shape stored in vector
-		s.setEnd(p); // and set its end point.
+		MyLine s = (MyLine) shape;
+		s.setEnd(p);
 		shape = s;
 		return s;
 	}
