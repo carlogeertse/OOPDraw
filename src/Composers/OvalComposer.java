@@ -6,29 +6,29 @@ import mainpackage.AbstractShape;
 import mainpackage.MyOval;
 
 public class OvalComposer implements ShapeComposer{
-	private AbstractShape shape;
+	private MyOval oval;
 	
 	@Override
 	public AbstractShape create(Point p) {
 		MyOval s = new MyOval(); // Create the shape - Oval
 		s.setStart(p);// Set the start position where mouse went down
-		shape = s;
+		oval = s;
 		return s;
 	}
 
 	@Override
 	public AbstractShape expand(Point p) {
-		MyOval s = (MyOval) shape;
+		MyOval s = (MyOval) oval;
 		s.setEnd(p);
-		shape = s;
+		oval = s;
 		return s;
 	}
 
 	@Override
 	public AbstractShape complete(Point p) {
-		MyOval s = (MyOval) shape;
+		MyOval s = (MyOval) oval;
 		s.setEnd(p);
-		shape = s;
+		oval = s;
 		return s;
 	}
 }

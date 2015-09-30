@@ -1,30 +1,36 @@
 package Composers;
 
-import java.util.HashMap;
 
-public class shapeComposerFactory {
-	static private shapeComposerFactory _instance;
+public class ShapeComposerFactory {
+	static private ShapeComposerFactory _instance;
 	
-	private shapeComposerFactory()
+	private ShapeComposerFactory()
 	{
 		
 	}
 	
-	public static shapeComposerFactory getInstance()
+	public static ShapeComposerFactory getInstance()
 	{
 		if(_instance==null)
 		{
-			_instance = new shapeComposerFactory();
+			_instance = new ShapeComposerFactory();
 		}
 		return _instance;
 	}
 	
-	public HashMap<String,String> listComposerNames() {
-			return null;
+	public String[] listComposerNames() {
+			String[] names = {"Oval","Rectangle","Line"}; //Final shape will be the default shape to be drawn.
+			return names;
 	}
 	
 	public ShapeComposer createComposer(String name) {
-			return null;
+			switch (name)
+			{
+				case "Line": return new LineComposer(); 
+				case "Oval": return new OvalComposer();
+				case "Rectangle": return new RectangleComposer();
+				default: return new LineComposer();
+			}
 	}
 
 }

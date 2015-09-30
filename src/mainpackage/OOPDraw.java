@@ -39,11 +39,8 @@ import java.util.HashSet;
 
 import javax.swing.JFrame;
 
-import Composers.LineComposer;
-import Composers.OvalComposer;
-import Composers.RectangleComposer;
 import Composers.ShapeComposer;
-
+import Composers.ShapeComposerFactory;
 /**
  * Filename: OOPDraw2.java<br/>
  * Written By: Sunit Katkar<br/>
@@ -104,7 +101,6 @@ public class OOPDraw extends JFrame implements MouseListener, MouseMotionListene
 	 */
 	public OOPDraw() {
 		shapeList = new HashSet<AbstractShape>();
-		currentComposer = new LineComposer();
 		initGUI();
 	}
 
@@ -190,47 +186,20 @@ public class OOPDraw extends JFrame implements MouseListener, MouseMotionListene
 		setLayout(new FlowLayout());
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
+		ShapeComposerFactory factory = ShapeComposerFactory.getInstance();
 		// Create and Add the buttons
-		Button btnLine = new Button("Line");
-		btnLine.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				currentComposer = new LineComposer();
-			}
-		});
-		Button btnOval = new Button("Oval");
-		btnOval.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				currentComposer = new OvalComposer();
-			}
-		});
-		Button btnRect = new Button("Rectangle");
-		btnRect.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				currentComposer = new RectangleComposer();
-			}
-		});
-		Button btnClear = new Button("Clear");
-		btnClear.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// Clear the entire drawing screen
-				// First remove all elements
-				shapeList.clear();
-				// finally, call repaint()
-				repaint();
-			}
-		});
-		add(btnLine);
-		add(btnOval);
-		add(btnRect);
-		add(btnClear);
+		for (String name : factory.listComposerNames()) {
+			Button button = new Button(name);
+			final ShapeComposer newComposer = factory.createComposer(name);
+			currentComposer = newComposer;
+			button.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					currentComposer = newComposer;
+				}
+			});
+			add(button);
+		};
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
