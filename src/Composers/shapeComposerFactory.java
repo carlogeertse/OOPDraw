@@ -1,4 +1,4 @@
-package Composers;
+package composers;
 
 
 public class ShapeComposerFactory {
@@ -19,7 +19,7 @@ public class ShapeComposerFactory {
 	}
 	
 	public String[] listComposerNames() {
-			String[] names = {"Oval","Rectangle","Line"}; //Final shape will be the default shape to be drawn.
+			String[] names = {"ComposedShape","Oval","Rectangle","Line"}; //Final shape will be the default shape to be drawn.
 			return names;
 	}
 	
@@ -29,6 +29,7 @@ public class ShapeComposerFactory {
 				case "Line": return new LineComposer(); 
 				case "Oval": return new OvalComposer();
 				case "Rectangle": return new RectangleComposer();
+				case "ComposedShape": return new FunnyShapeComposer();
 				default: return new LineComposer();
 			}
 	}

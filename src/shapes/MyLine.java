@@ -1,4 +1,4 @@
-package mainpackage;
+package shapes;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;

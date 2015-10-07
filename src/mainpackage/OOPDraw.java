@@ -39,8 +39,9 @@ import java.util.HashSet;
 
 import javax.swing.JFrame;
 
-import Composers.ShapeComposer;
-import Composers.ShapeComposerFactory;
+import shapes.AbstractShape;
+import composers.ShapeComposer;
+import composers.ShapeComposerFactory;
 /**
  * Filename: OOPDraw2.java<br/>
  * Written By: Sunit Katkar<br/>

@@ -1,9 +1,9 @@
-package Composers;
+package composers;
 
 import java.awt.Point;
 
-import mainpackage.AbstractShape;
-import mainpackage.MyLine;
+import shapes.AbstractShape;
+import shapes.MyLine;
 
 public class LineComposer implements ShapeComposer {
 	private MyLine line;
@@ -23,7 +23,7 @@ public class LineComposer implements ShapeComposer {
 
 	@Override
 	public AbstractShape expand(Point p) {
-		MyLine s = (MyLine) line;
+		MyLine s = line;
 		s.setEnd(p);
 		line = s;
 		return s;
@@ -31,9 +31,6 @@ public class LineComposer implements ShapeComposer {
 
 	@Override
 	public AbstractShape complete(Point p) {
-		MyLine s = (MyLine) line;
-		s.setEnd(p);
-		line = s;
-		return s;
+		return this.expand(p);
 	}
 }

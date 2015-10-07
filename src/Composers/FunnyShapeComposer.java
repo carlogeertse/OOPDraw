@@ -3,24 +3,30 @@ package composers;
 import java.awt.Point;
 
 import shapes.AbstractShape;
+import shapes.ComposedShape;
+import shapes.MyLine;
+import shapes.MyOval;
 import shapes.MyRect;
 
-public class RectangleComposer implements ShapeComposer{
-	private MyRect rect;
+public class FunnyShapeComposer implements ShapeComposer {
+	private ComposedShape compShape;
 	
 	@Override
 	public AbstractShape create(Point p) {
-		MyRect s = new MyRect(); // Create the shape - Rectangle
+		ComposedShape s = new ComposedShape();// Create the shape - Composite shape
+		s.addShape(new MyOval());
+		s.addShape(new MyRect());
+		s.addShape(new MyLine());
 		s.setStart(p);// Set the start position where mouse went down
-		rect = s;
+		compShape = s;
 		return s;
 	}
 
 	@Override
 	public AbstractShape expand(Point p) {
-		MyRect s = rect;
+		ComposedShape s = compShape;
 		s.setEnd(p);
-		rect = s;
+		compShape = s;
 		return s;
 	}
 
@@ -28,4 +34,5 @@ public class RectangleComposer implements ShapeComposer{
 	public AbstractShape complete(Point p) {
 		return this.expand(p);
 	}
+
 }

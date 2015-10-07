@@ -1,9 +1,9 @@
-package Composers;
+package composers;
 
 import java.awt.Point;
 
-import mainpackage.AbstractShape;
-import mainpackage.MyOval;
+import shapes.AbstractShape;
+import shapes.MyOval;
 
 public class OvalComposer implements ShapeComposer{
 	private MyOval oval;
@@ -18,7 +18,7 @@ public class OvalComposer implements ShapeComposer{
 
 	@Override
 	public AbstractShape expand(Point p) {
-		MyOval s = (MyOval) oval;
+		MyOval s = oval;
 		s.setEnd(p);
 		oval = s;
 		return s;
@@ -26,9 +26,6 @@ public class OvalComposer implements ShapeComposer{
 
 	@Override
 	public AbstractShape complete(Point p) {
-		MyOval s = (MyOval) oval;
-		s.setEnd(p);
-		oval = s;
-		return s;
+		return this.expand(p);
 	}
 }

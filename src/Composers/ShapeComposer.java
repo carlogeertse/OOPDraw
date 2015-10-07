@@ -1,7 +1,7 @@
-package Composers;
+package composers;
 import java.awt.Point;
 
-import mainpackage.AbstractShape;
+import shapes.AbstractShape;
 
 
 public interface ShapeComposer {
